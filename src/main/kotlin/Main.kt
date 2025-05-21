@@ -128,7 +128,7 @@ fun makeCsvFile2(target: MutableList<CrawlContainer>) {
 
 fun main() {
 //    val list = mutableListOf<CrawlContainer>()
-//    val deepLearningCrawl =  DeepLearningCrawl()
+//    val deepLearningCrawl =  DeepLearning()
 //    val result = deepLearningCrawl.invoke()
 //    result.forEach {list.add(it)}
 //    makeCsvFile2(list)

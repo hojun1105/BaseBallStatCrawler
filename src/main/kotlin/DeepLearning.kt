@@ -34,7 +34,7 @@ data class MatchResult(
     val location:String
 )
 
-class DeepLearningCrawl {
+class DeepLearning {
 
     fun jsoupGetCustom(url: String): Document {
         return Jsoup.connect(url)
