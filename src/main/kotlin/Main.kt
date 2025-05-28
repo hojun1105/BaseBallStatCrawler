@@ -4,6 +4,7 @@ import org.jsoup.Jsoup
 import java.io.File
 import java.io.FileWriter
 
+
 data class Statiz(
     val team_name: String,
     var run_scored: String,
@@ -127,9 +128,16 @@ fun makeCsvFile2(target: MutableList<CrawlContainer>) {
 
 
 fun main() {
-//    val list = mutableListOf<CrawlContainer>()
+    //    val list = mutableListOf<CrawlContainer>()
 //    val deepLearningCrawl =  DeepLearning()
 //    val result = deepLearningCrawl.invoke()
 //    result.forEach {list.add(it)}
 //    makeCsvFile2(list)
+    try {
+        BaseballArchive.crawlAll()
+        println(" 크롤링 및 DB 저장 작업 완료")
+    } catch (e: Exception) {
+        e.printStackTrace()
+        println("️ 에러 발생: ${e.message}")
+    }
 }
