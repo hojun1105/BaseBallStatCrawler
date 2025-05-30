@@ -3,6 +3,7 @@ package com.demo
 import org.jsoup.Jsoup
 import java.io.File
 import java.io.FileWriter
+import java.time.LocalDate
 
 
 data class Statiz(
@@ -133,11 +134,8 @@ fun main() {
 //    val result = deepLearningCrawl.invoke()
 //    result.forEach {list.add(it)}
 //    makeCsvFile2(list)
-    try {
-        BaseballArchive.crawlAll()
-        println(" 크롤링 및 DB 저장 작업 완료")
-    } catch (e: Exception) {
-        e.printStackTrace()
-        println("️ 에러 발생: ${e.message}")
-    }
+    val archive = BaseballArchive()
+    archive.crawlAndSavePlayerInfo("https://www.koreabaseball.com/Record/Player/HitterBasic/Basic1.aspx", true)
+    archive.crawlAndSavePlayerInfo("https://www.koreabaseball.com/Record/Player/PitcherBasic/Basic1.aspx", false)
+    archive.crawlAllStats()
 }
