@@ -83,7 +83,6 @@ object BaseballArchive {
         val conn = createConnection()
         val driver = createDriver()
         val date = LocalDate.now()
-
         try {
             val pitcherMap = mutableMapOf<String, MutableList<String>>()
 
