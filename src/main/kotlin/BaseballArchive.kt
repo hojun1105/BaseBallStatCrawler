@@ -110,26 +110,40 @@ class BaseballArchive {
             val wait = WebDriverWait(driver, Duration.ofSeconds(10))
             wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("table.tData01.tt")))
 
-            val rows = driver.findElement(By.cssSelector("table.tData01.tt tbody")).findElements(By.tagName("tr"))
             val insertSql = """
-                INSERT INTO player_info (name, team_id, position)
-                VALUES (?, ?, ?)
-                ON CONFLICT (name, team_id) DO UPDATE SET position = EXCLUDED.position
-            """.trimIndent()
+            INSERT INTO player_info (name, team_id, position)
+            VALUES (?, ?, ?)
+            ON CONFLICT (name, team_id) DO UPDATE SET position = EXCLUDED.position
+        """.trimIndent()
             val pstmt = conn.prepareStatement(insertSql)
 
-            for (row in rows) {
-                val cols = row.findElements(By.tagName("td"))
-                if (cols.size < 4) continue
-                val name = cols[1].text.trim()
-                val teamName = cols[2].text.trim()
-                val teamId = teamMap[teamName] ?: continue
-                val position = if (isHitter) "hitter" else "pitcher"
+            // 페이지 1과 페이지 2를 순회
+            for (page in 1..2) {
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("table.tData01.tt")))
+                val rows = driver.findElement(By.cssSelector("table.tData01.tt tbody")).findElements(By.tagName("tr"))
 
-                pstmt.setString(1, name)
-                pstmt.setInt(2, teamId)
-                pstmt.setString(3, position)
-                pstmt.addBatch()
+                for (row in rows) {
+                    val cols = row.findElements(By.tagName("td"))
+                    if (cols.size < 4) continue
+                    val name = cols[1].text.trim()
+                    val teamName = cols[2].text.trim()
+                    val teamId = teamMap[teamName] ?: continue
+                    val position = if (isHitter) "hitter" else "pitcher"
+
+                    pstmt.setString(1, name)
+                    pstmt.setInt(2, teamId)
+                    pstmt.setString(3, position)
+                    pstmt.addBatch()
+                }
+
+                // 2페이지 클릭
+                if (page == 1) {
+                    val nextBtn = driver.findElements(By.id("cphContents_cphContents_cphContents_ucPager_btnNo2"))
+                    if (nextBtn.isNotEmpty() && nextBtn[0].isDisplayed) {
+                        nextBtn[0].click()
+                        Thread.sleep(1000) // 페이지 전환 대기
+                    }
+                }
             }
 
             pstmt.executeBatch()
@@ -234,27 +248,61 @@ class BaseballArchive {
     }
 
     private fun extractHitterData(driver: WebDriver, map: MutableMap<String, MutableList<String>>) {
-        fun parse(url: String, isSecond: Boolean) {
-            driver.get(url)
+        // 주어진 URL을 받아 1페이지와 2페이지 모두를 파싱하는 함수
+        fun parseBothPages(url: String, isSecond: Boolean) {
             val wait = WebDriverWait(driver, Duration.ofSeconds(10))
-            wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("table.tData01.tt")))
-            val rows = driver.findElement(By.cssSelector("table.tData01.tt tbody")).findElements(By.tagName("tr"))
-            for (row in rows) {
-                val cols = row.findElements(By.tagName("td"))
-                if (cols.size < 4) continue
-                val name = cols[1].text.trim()
-                val team = cols[2].text.trim()
-                val key = "$name|$team"
-                val stats = cols.drop(3).map { it.text.trim() }
-                if (!isSecond) map[key] = stats.toMutableList()
-                else {
-                    if (map.containsKey(key)) map[key]?.addAll(stats.drop(1))
+
+            // 내부 함수: 현재 페이지의 타자 데이터를 수집
+            fun collectData() {
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("table.tData01.tt")))
+                val rows = driver.findElement(By.cssSelector("table.tData01.tt tbody")).findElements(By.tagName("tr"))
+                for (row in rows) {
+                    val cols = row.findElements(By.tagName("td"))
+                    if (cols.size < 4) continue
+                    val name = cols[1].text.trim()
+                    val team = cols[2].text.trim()
+                    val key = "$name|$team"
+                    val stats = cols.drop(3).map { it.text.trim() }
+                    if (!isSecond) {
+                        map[key] = stats.toMutableList()
+                    } else {
+                        if (map.containsKey(key)) {
+                            map[key]?.addAll(stats.drop(1)) // AVG 중복 제외
+                        }
+                    }
                 }
             }
+
+            // 1페이지 접속 및 데이터 수집
+            driver.get(url)
+            collectData()
+
+            // 2페이지 버튼 클릭
+            try {
+                // 2페이지 버튼 ID는 "cphContents_cphContents_cphContents_ucPager_btnNo2"
+                val btnNextPage = wait.until(
+                    ExpectedConditions.elementToBeClickable(By.id("cphContents_cphContents_cphContents_ucPager_btnNo2"))
+                )
+                btnNextPage.click()
+
+                // 클릭 후 테이블 다시 로드될 때까지 대기
+                wait.until(ExpectedConditions.stalenessOf(driver.findElement(By.cssSelector("table.tData01.tt"))))
+                wait.until(ExpectedConditions.presenceOfElementLocated(By.cssSelector("table.tData01.tt")))
+
+                // 2페이지 데이터 수집
+                collectData()
+            } catch (e: Exception) {
+                println("2페이지 로딩 실패: ${e.message}")
+            }
         }
-        parse("https://www.koreabaseball.com/Record/Player/HitterBasic/Basic1.aspx", false)
-        parse("https://www.koreabaseball.com/Record/Player/HitterBasic/Basic2.aspx", true)
+
+        // Basic1 페이지 수집 (AVG 포함)
+        parseBothPages("https://www.koreabaseball.com/Record/Player/HitterBasic/Basic1.aspx", false)
+
+        // Basic2 페이지 수집 (AVG 중복 제거)
+        parseBothPages("https://www.koreabaseball.com/Record/Player/HitterBasic/Basic2.aspx", true)
     }
+
 
     fun crawlPitcherStatsAndSave() {
         val date = LocalDate.now()
