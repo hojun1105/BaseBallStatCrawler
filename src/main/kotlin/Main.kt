@@ -130,6 +130,6 @@ fun makeCsvFile2(target: MutableList<CrawlContainer>) {
 
 
 fun main() {
-    var service = CrawlPitcherStatService()
-    service.invoke()
+//    var service = CrawlPitcherStatService()
+//    service.invoke()
 }

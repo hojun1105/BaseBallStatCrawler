@@ -6,6 +6,7 @@ import com.demo.model.TeamInfo
 import com.demo.repository.HitterStatRepository;
 import com.demo.repository.PlayerInfoRepository
 import com.demo.repository.TeamInfoRepository
+import com.demo.util.Parsers
 import org.springframework.stereotype.Service;
 import java.time.LocalDate
 import java.time.format.DateTimeFormatter
@@ -18,15 +19,15 @@ class SaveHitterStatService(
 ) {
     fun invoke(stats:List<Pair<List<String>,List<String>>>) {
 
-        val infoEntities = stats.map { (info,stat) ->
+        val infoEntities = stats.map { (info, _) ->
             PlayerInfo().apply{
                 this.name = info[0]
                 this.position = info[1]
                 this.backNumber = info[2].toInt()
-                this.birthDate = parseKoreanDate(info[3])
+                this.birthDate = Parsers.parseKoreanDate(info[3])
                 this.heightWeight = info[4]
-                this.salary = parseSalary(info[5])
-                this.debutYear = extractNumber(info[6])
+                this.salary = Parsers.parseSalary(info[5])
+                this.debutYear = Parsers.extractNumber(info[6])
                 this.team = getTeamInfoById(info[7].toInt())
             }
         }
@@ -36,7 +37,7 @@ class SaveHitterStatService(
             HitterStat().apply{
                 this.player = getPlayerInfoByNameAndTeamName(info[0],stat[0])
                 this.date = LocalDate.now()
-                this.average = parsePercentage(stat[1])
+                this.average = Parsers.parsePercentage(stat[1])
                 this.games = stat[2].toInt()
                 this.plateAppearances = stat[3].toInt()
                 this.atBat = stat[4].toInt()
@@ -56,55 +57,55 @@ class SaveHitterStatService(
                 this.hitByPitch = stat[18].toInt()
                 this.strikeOut = stat[19].toInt()
                 this.groundedIntoDoublePlay = stat[20].toInt()
-                this.sluggingPercentage = parsePercentage(stat[21])
-                this.onBasePercentage = parsePercentage(stat[22])
+                this.sluggingPercentage = Parsers.parsePercentage(stat[21])
+                this.onBasePercentage = Parsers.parsePercentage(stat[22])
                 this.error = stat[23].toInt()
-                this.stolenBasePercentage = parsePercentage(stat[24])
+                this.stolenBasePercentage = Parsers.parsePercentage(stat[24])
                 this.multiHit = stat[25].toInt()
-                this.onBasePlusSlugging = parsePercentage(stat[26])
-                this.runnersInScoringPosition = parsePercentage(stat[27])
-                this.substituteHitterBattingAverage = parsePercentage(stat[28])
+                this.onBasePlusSlugging =Parsers.parsePercentage(stat[26])
+                this.runnersInScoringPosition = Parsers.parsePercentage(stat[27])
+                this.substituteHitterBattingAverage = Parsers.parsePercentage(stat[28])
             }
         }
         hitterStatRepository.saveAll(hitterStatEntities)
         println(" ${hitterStatEntities.size}명 저장 완료")
     }
 
-    fun parseKoreanDate(dateString: String?): LocalDate? {
-        return dateString
-            ?.takeIf { it.isNotBlank() }
-            ?.let {
-                val formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")
-                LocalDate.parse(it, formatter)
-            }
-    }
-
-    fun parseSalary(salaryString: String?): Long? {
-        return salaryString
-            ?.replace("[^\\d]".toRegex(), "")  // 숫자만 남기고 나머지 제거
-            ?.takeIf { it.isNotBlank() }
-            ?.toLongOrNull()
-    }
-
-    fun extractNumber(text: String?): Int? {
-        return text
-            ?.replace("[^\\d]".toRegex(), "") // 숫자만 남기고 제거
-            ?.takeIf { it.isNotBlank() }
-            ?.toIntOrNull()
-    }
+//    fun parseKoreanDate(dateString: String?): LocalDate? {
+//        return dateString
+//            ?.takeIf { it.isNotBlank() }
+//            ?.let {
+//                val formatter = DateTimeFormatter.ofPattern("yyyy년 MM월 dd일")
+//                LocalDate.parse(it, formatter)
+//            }
+//    }
+//
+//    fun parseSalary(salaryString: String?): Long? {
+//        return salaryString
+//            ?.replace("[^\\d]".toRegex(), "")  // 숫자만 남기고 나머지 제거
+//            ?.takeIf { it.isNotBlank() }
+//            ?.toLongOrNull()
+//    }
+//
+//    fun extractNumber(text: String?): Int? {
+//        return text
+//            ?.replace("[^\\d]".toRegex(), "") // 숫자만 남기고 제거
+//            ?.takeIf { it.isNotBlank() }
+//            ?.toIntOrNull()
+//    }
 
     fun getTeamInfoById(teamId: Int): TeamInfo {
         return teamInfoRepository.findById(teamId.toLong())
             .orElseThrow { IllegalArgumentException("ID가 $teamId 인 팀이 존재하지 않습니다.") }
     }
 
-    fun parsePercentage(value: String): Double? {
-        return when {
-            value.trim() == "-" -> null
-            value.contains("%") -> value.replace("%", "").trim().toDoubleOrNull()?.div(100)
-            else -> value.trim().toDoubleOrNull()
-        }
-    }
+//    fun parsePercentage(value: String): Double? {
+//        return when {
+//            value.trim() == "-" -> null
+//            value.contains("%") -> value.replace("%", "").trim().toDoubleOrNull()?.div(100)
+//            else -> value.trim().toDoubleOrNull()
+//        }
+//    }
 
 
     fun getPlayerInfoByNameAndTeamName(name: String, teamName: String): PlayerInfo? {
