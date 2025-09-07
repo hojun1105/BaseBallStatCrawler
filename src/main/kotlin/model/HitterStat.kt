@@ -1,9 +1,6 @@
 package com.demo.model
 
 import jakarta.persistence.*
-import lombok.Getter
-import lombok.NoArgsConstructor
-import lombok.Setter
 import java.time.LocalDate
 
 
@@ -13,9 +10,7 @@ import java.time.LocalDate
     schema = "kbo",
     uniqueConstraints = [UniqueConstraint(columnNames = ["player_id", "date"])]
 )
-@Getter
-@Setter
-@NoArgsConstructor
+
 class HitterStat {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
