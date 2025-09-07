@@ -67,7 +67,7 @@ class SaveHitterStatService(
             }
         }
         hitterStatRepository.saveAll(hitterStatEntities)
-        println("✅ ${hitterStatEntities.size}명 저장 완료")
+        println(" ${hitterStatEntities.size}명 저장 완료")
     }
 
     fun parseKoreanDate(dateString: String?): LocalDate? {

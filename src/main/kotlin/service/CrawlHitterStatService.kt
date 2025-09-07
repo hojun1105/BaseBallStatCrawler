@@ -19,7 +19,6 @@ class CrawlHitterStatService(
     fun invoke(teamName: String)
             :List<Pair<List<String>,List<String>>>
     {
-//        var urls = crawlAllCombinations()
         val teamCode = getTeamCodeFromName(teamName) ?: throw IllegalArgumentException("팀 이름을 찾을 수 없습니다: $teamName")
 
         val urls = crawlByTeam(teamCode)
