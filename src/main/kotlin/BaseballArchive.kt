@@ -112,7 +112,7 @@ class BaseballArchive {
 
             val rows = driver.findElement(By.cssSelector("table.tData01.tt tbody")).findElements(By.tagName("tr"))
             val insertSql = """
-                INSERT INTO player_info (name, team_id, position)
+                INSERT INTO kbo.player_info (name, team_id, position)
                 VALUES (?, ?, ?)
                 ON CONFLICT (name, team_id) DO UPDATE SET position = EXCLUDED.position
             """.trimIndent()
@@ -156,7 +156,7 @@ class BaseballArchive {
             extractHitterData(driver, hitterMap)
             val playerIdStmt = conn.prepareStatement("SELECT id FROM player_info WHERE name = ? AND team_id = ?")
             val insertSql = """
-                INSERT INTO hitter_stat (
+                INSERT INTO kbo.hitter_stat (
                     player_id, date, average, games, plate_appearances, at_bat, runs, hits, double_base, triple_base, home_run,
                     total_base, runs_batted_in, sacrifice_hit, sacrifice_fly, based_on_balls, intentional_based_on_balls, hit_by_pitch,
                     strike_out, grounded_into_double_play, slugging_percentage, on_base_percentage, on_base_plus_slugging, multi_hit,
@@ -266,7 +266,7 @@ class BaseballArchive {
             extractPitcherData(driver, pitcherMap)
             val playerIdStmt = conn.prepareStatement("SELECT id FROM player_info WHERE name = ? AND team_id = ?")
             val insertSql = """
-                INSERT INTO pitcher_stat (
+                INSERT INTO kbo.pitcher_stat (
                     player_id, date, earned_run_average, games, wins, loses, save, hold, winning_percentage,
                     innings_pitched, hits, home_run, based_on_balls, hit_by_pitch, strike_out,
                     runs, earned_run, walks_plus_hits_divided_by_innings_pitched, complete_game, shutouts, quality_start,

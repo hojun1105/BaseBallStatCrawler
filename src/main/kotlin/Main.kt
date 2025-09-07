@@ -1,5 +1,8 @@
 package com.demo
 
+import com.demo.service.CrawlHitterStatService
+import com.demo.service.CrawlPitcherStatService
+import com.demo.service.CrawlPlayerInfoService
 import org.jsoup.Jsoup
 import java.io.File
 import java.io.FileWriter
@@ -129,13 +132,28 @@ fun makeCsvFile2(target: MutableList<CrawlContainer>) {
 
 
 fun main() {
-    //    val list = mutableListOf<CrawlContainer>()
-//    val deepLearningCrawl =  DeepLearning()
-//    val result = deepLearningCrawl.invoke()
-//    result.forEach {list.add(it)}
-//    makeCsvFile2(list)
-    val archive = BaseballArchive()
-    archive.crawlAndSavePlayerInfo("https://www.koreabaseball.com/Record/Player/HitterBasic/Basic1.aspx", true)
-    archive.crawlAndSavePlayerInfo("https://www.koreabaseball.com/Record/Player/PitcherBasic/Basic1.aspx", false)
-    archive.crawlAllStats()
+
+    val playerInfoService = CrawlPlayerInfoService()
+    val pitcherStatService = CrawlPitcherStatService(playerInfoService)
+
+    // 테스트할 팀 이름을 지정합니다.
+    val teamName = "엘지"
+
+    try {
+        println(">> '$teamName' 팀의 투수 데이터를 가져옵니다...")
+
+        // 투수 서비스의 invoke 함수를 호출합니다.
+        val result = pitcherStatService.invoke(teamName)
+
+        println("총 투수 수: ${result.size}")
+        for ((info, stats) in result) {
+            println("선수 정보: $info")
+            println("선수 스탯: $stats")
+            println("=====================================")
+        }
+    } catch (e: Exception) {
+        println("크롤링 중 오류 발생: ${e.message}")
+        e.printStackTrace()
+    }
 }
+

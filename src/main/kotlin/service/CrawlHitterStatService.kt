@@ -31,6 +31,7 @@ class CrawlHitterStatService(
     private fun createDriver(): WebDriver {
         val options = ChromeOptions()
         options.addArguments("--disable-gpu", "--no-sandbox", "--headless=new")
+        System.setProperty("webdriver.chrome.driver", "C:\\chromedriver\\chromedriver.exe")
         return ChromeDriver(options)
     }
 
