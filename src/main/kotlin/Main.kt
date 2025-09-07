@@ -1,5 +1,6 @@
 package com.demo
 
+import com.demo.service.CrawlPitcherStatService
 import org.jsoup.Jsoup
 import java.io.File
 import java.io.FileWriter
@@ -129,13 +130,6 @@ fun makeCsvFile2(target: MutableList<CrawlContainer>) {
 
 
 fun main() {
-    //    val list = mutableListOf<CrawlContainer>()
-//    val deepLearningCrawl =  DeepLearning()
-//    val result = deepLearningCrawl.invoke()
-//    result.forEach {list.add(it)}
-//    makeCsvFile2(list)
-    val archive = BaseballArchive()
-    archive.crawlAndSavePlayerInfo("https://www.koreabaseball.com/Record/Player/HitterBasic/Basic1.aspx", true)
-    archive.crawlAndSavePlayerInfo("https://www.koreabaseball.com/Record/Player/PitcherBasic/Basic1.aspx", false)
-    archive.crawlAllStats()
+    var service = CrawlPitcherStatService()
+    service.invoke()
 }
