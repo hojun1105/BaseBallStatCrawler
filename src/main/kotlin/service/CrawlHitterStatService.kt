@@ -21,7 +21,7 @@ class CrawlHitterStatService(
     {
         val teamCode = getTeamCodeFromName(teamName) ?: throw IllegalArgumentException("팀 이름을 찾을 수 없습니다: $teamName")
 
-        val urls = crawlByTeam(teamCode).take(10)
+        val urls = crawlByTeam(teamCode)
         return urls.map{ url ->
             val stat = crawlStats(url)
             val info = crawlPlayerInfoService.invoke(url)

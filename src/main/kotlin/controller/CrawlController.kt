@@ -1,7 +1,9 @@
 package com.demo.controller
 
 import com.demo.service.*
+import io.swagger.v3.oas.annotations.Operation
 import org.springframework.web.bind.annotation.GetMapping
+import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
@@ -15,7 +17,8 @@ class CrawlController(
     private val savePitcherStatService: SavePitcherStatService,
 ) {
 
-    @GetMapping("/hitter")
+    @Operation(summary = "타자 크롤링")
+    @PostMapping("/hitter")
     fun startHitterCrawl(@RequestParam teamName: String): String {
         val data = crawlHitterStatService.invoke(teamName)
         println("$teamName 크롤링완료")
@@ -25,7 +28,8 @@ class CrawlController(
         return "$teamName 크롤링 및 저장 완료"
     }
 
-    @GetMapping("/pitcher")
+    @Operation(summary = "투수 크롤링")
+    @PostMapping("/pitcher")
     fun startPitcherCrawl(@RequestParam teamName: String): String {
         val data = crawlPitcherStatService.invoke(teamName)
         println("$teamName 크롤링완료")
