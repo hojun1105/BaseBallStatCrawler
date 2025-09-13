@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service
 class CrawlPlayerInfoService {
 
     fun invoke(url:String): List<String> {
-        var driver = createDriver()
+        val driver = createDriver()
         driver.get(url)
         val teamName = driver.findElement(By.id("h4Team")).text.trim()
         val teamId = teamNameToId[teamName] ?: throw IllegalArgumentException("알 수 없는 팀 이름: $teamName")

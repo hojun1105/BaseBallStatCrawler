@@ -31,6 +31,16 @@ class SaveHitterStatService(
                 this.team = getTeamInfoById(info[7].toInt())
             }
         }
+
+//        infoEntities.forEach{
+//            run {
+//                val player = playerInfoRepository.findByNameAndTeam(it.name!!, it.team!!)
+//                if (player != null) {
+//                    playerInfoRepository.save(it)
+//                }
+//            }
+//        }
+//
         playerInfoRepository.saveAll(infoEntities)
 
         val hitterStatEntities = stats.map { (info,stat) ->
