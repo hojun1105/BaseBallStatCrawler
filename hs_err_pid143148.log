@@ -1,0 +1,233 @@
+#
+# There is insufficient memory for the Java Runtime Environment to continue.
+# Native memory allocation (malloc) failed to allocate 1048576 bytes. Error detail: AllocateHeap
+# Possible reasons:
+#   The system is out of physical RAM or swap space
+#   This process is running with CompressedOops enabled, and the Java Heap may be blocking the growth of the native heap
+# Possible solutions:
+#   Reduce memory load on the system
+#   Increase physical memory or swap space
+#   Check if swap backing store is full
+#   Decrease Java heap size (-Xmx/-Xms)
+#   Decrease number of Java threads
+#   Decrease Java thread stack sizes (-Xss)
+#   Set larger code cache with -XX:ReservedCodeCacheSize=
+#   JVM is running with Zero Based Compressed Oops mode in which the Java heap is
+#     placed in the first 32GB address space. The Java Heap base address is the
+#     maximum limit for the native heap growth. Please use -XX:HeapBaseMinAddress
+#     to set the Java Heap base and to place the Java Heap above 32GB virtual address.
+# This output file may be truncated or incomplete.
+#
+#  Out of Memory Error (allocation.cpp:44), pid=143148, tid=17668
+#
+# JRE version:  (22.0.1+8) (build )
+# Java VM: OpenJDK 64-Bit Server VM (22.0.1+8-16, mixed mode, emulated-client, sharing, tiered, compressed oops, compressed class ptrs, g1 gc, windows-amd64)
+# No core dump will be written. Minidumps are not enabled by default on client versions of Windows
+#
+
+---------------  S U M M A R Y ------------
+
+Command Line: -agentlib:jdwp=transport=dt_socket,address=127.0.0.1:59964,suspend=y,server=n -agentpath:C:\Users\Hojun\AppData\Local\Temp\idea_libasyncProfiler_dll_temp_folder15064\libasyncProfiler.dll=version,jfr,event=wall,interval=10ms,cstack=no,file=C:\Users\Hojun\IdeaSnapshots\Application_2025_09_14_105419.jfr,dbghelppath=C:\Users\Hojun\AppData\Local\Temp\idea_dbghelp_dll_temp_folder9\dbghelp.dll,log=C:\Users\Hojun\AppData\Local\Temp\Application_2025_09_14_105419.jfr.log.txt,logLevel=DEBUG -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Hojun\AppData\Local\JetBrains\IntelliJIdea2024.3\captureAgent\debugger-agent.jar=file:/C:/Users/Hojun/AppData/Local/Temp/capture1.props -Dkotlinx.coroutines.debug.enable.creation.stack.trace=false -Ddebugger.agent.enable.coroutines=true -Dkotlinx.coroutines.debug.enable.flows.stack.trace=true -Dkotlinx.coroutines.debug.enable.mutable.state.flows.stack.trace=true -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 com.demo.ApplicationKt
+
+Host: AMD Ryzen 5 5600X 6-Core Processor             , 12 cores, 15G,  Windows 10 , 64 bit Build 19041 (10.0.19041.5915)
+Time: Sun Sep 14 10:54:19 2025  Windows 10 , 64 bit Build 19041 (10.0.19041.5915) elapsed time: 0.064440 seconds (0d 0h 0m 0s)
+
+---------------  T H R E A D  ---------------
+
+Current thread (0x0000010f4ea3e940):  JavaThread "Unknown thread" [_thread_in_vm, id=17668, stack(0x0000000873b00000,0x0000000873c00000) (1024K)]
+
+Stack: [0x0000000873b00000,0x0000000873c00000]
+Native frames: (J=compiled Java code, j=interpreted, Vv=VM code, C=native code)
+V  [jvm.dll+0x6e2279]  (no source info available)
+V  [jvm.dll+0x874e33]  (no source info available)
+V  [jvm.dll+0x87725e]  (no source info available)
+V  [jvm.dll+0x877933]  (no source info available)
+V  [jvm.dll+0x27fd76]  (no source info available)
+V  [jvm.dll+0xbe877]  (no source info available)
+V  [jvm.dll+0x334fc4]  (no source info available)
+V  [jvm.dll+0x32d12e]  (no source info available)
+V  [jvm.dll+0x83ccdc]  (no source info available)
+V  [jvm.dll+0x3c0d71]  (no source info available)
+V  [jvm.dll+0x825ccc]  (no source info available)
+V  [jvm.dll+0x45b8fe]  (no source info available)
+V  [jvm.dll+0x45d781]  (no source info available)
+C  [jli.dll+0x52a3]  (no source info available)
+C  [ucrtbase.dll+0x21bb2]  (no source info available)
+C  [KERNEL32.DLL+0x17374]  (no source info available)
+C  [ntdll.dll+0x4cc91]  (no source info available)
+
+
+---------------  P R O C E S S  ---------------
+
+Threads class SMR info:
+_java_thread_list=0x00007ff9bb0cb1c8, length=0, elements={
+}
+
+Java Threads: ( => current thread )
+Total: 0
+
+Other Threads:
+  0x0000010f4eab14e0 WorkerThread "GC Thread#0"                     [id=16936, stack(0x0000000873c00000,0x0000000873d00000) (1024K)]
+
+[error occurred during error reporting (printing all threads), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ff9ba819a80]
+VM state: not at safepoint (not fully initialized)
+
+VM Mutex/Monitor currently owned by a thread:  ([mutex/lock_event])
+[0x00007ff9bb14bcb8] Heap_lock - owner thread: 0x0000010f4ea3e940
+
+Heap address: 0x0000000701c00000, size: 4068 MB, Compressed Oops mode: Zero based, Oop shift amount: 3
+
+CDS archive(s) mapped at: [0x0000000000000000-0x0000000000000000-0x0000000000000000), size 0, SharedBaseAddress: 0x0000000800000000, ArchiveRelocationMode: 1.
+Narrow klass base: 0x0000000000000000, Narrow klass shift: 0, Narrow klass range: 0x0
+
+GC Precious Log:
+ CardTable entry size: 512
+ Card Set container configuration: InlinePtr #cards 4 size 8 Array Of Cards #cards 16 size 48 Howl #buckets 8 coarsen threshold 3686 Howl Bitmap #cards 512 size 80 coarsen threshold 460 Card regions per heap region 1 cards per card region 4096
+
+Heap:
+ garbage-first heap   total reserved 4165632K, committed 0K, used 0K [0x0000000701c00000, 0x0000000800000000)
+  region size 2048K, 0 young (0K), 0 survivors (0K)
+
+[error occurred during error reporting (printing heap information), id 0xc0000005, EXCEPTION_ACCESS_VIOLATION (0xc0000005) at pc=0x00007ff9bac1e429]
+GC Heap History (0 events):
+No events
+
+Dll operation events (2 events):
+Event: 0.059 Loaded shared library C:\Users\Hojun\.jdks\openjdk-22.0.1\bin\java.dll
+Event: 0.060 Loaded shared library C:\Users\Hojun\.jdks\openjdk-22.0.1\bin\zip.dll
+
+Deoptimization events (0 events):
+No events
+
+Classes loaded (0 events):
+No events
+
+Classes unloaded (0 events):
+No events
+
+Classes redefined (0 events):
+No events
+
+Internal exceptions (0 events):
+No events
+
+ZGC Phase Switch (0 events):
+No events
+
+VM Operations (0 events):
+No events
+
+Events (0 events):
+No events
+
+
+Dynamic libraries:
+0x00007ff629830000 - 0x00007ff62983e000 	C:\Users\Hojun\.jdks\openjdk-22.0.1\bin\java.exe
+0x00007ffa73250000 - 0x00007ffa73448000 	C:\Windows\SYSTEM32\ntdll.dll
+0x00007ffa71880000 - 0x00007ffa71942000 	C:\Windows\System32\KERNEL32.DLL
+0x00007ffa70b50000 - 0x00007ffa70e46000 	C:\Windows\System32\KERNELBASE.dll
+0x00007ffa70ee0000 - 0x00007ffa70fe0000 	C:\Windows\System32\ucrtbase.dll
+0x00007ffa41160000 - 0x00007ffa41177000 	C:\Users\Hojun\.jdks\openjdk-22.0.1\bin\jli.dll
+0x00007ffa40d10000 - 0x00007ffa40d2b000 	C:\Users\Hojun\.jdks\openjdk-22.0.1\bin\VCRUNTIME140.dll
+0x00007ffa72ef0000 - 0x00007ffa7308d000 	C:\Windows\System32\USER32.dll
+0x00007ffa71130000 - 0x00007ffa71152000 	C:\Windows\System32\win32u.dll
+0x00007ffa72cd0000 - 0x00007ffa72cfb000 	C:\Windows\System32\GDI32.dll
+0x00007ffa54a90000 - 0x00007ffa54d2b000 	C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.6280_none_60bc30a171f2f3f3\COMCTL32.dll
+0x00007ffa71160000 - 0x00007ffa71279000 	C:\Windows\System32\gdi32full.dll
+0x00007ffa730a0000 - 0x00007ffa7313e000 	C:\Windows\System32\msvcrt.dll
+0x00007ffa71090000 - 0x00007ffa7112d000 	C:\Windows\System32\msvcp_win.dll
+0x00007ffa71950000 - 0x00007ffa7197f000 	C:\Windows\System32\IMM32.DLL
+0x00007ffa64b60000 - 0x00007ffa64b6c000 	C:\Users\Hojun\.jdks\openjdk-22.0.1\bin\vcruntime140_1.dll
+0x00007ff9f8e10000 - 0x00007ff9f8e9e000 	C:\Users\Hojun\.jdks\openjdk-22.0.1\bin\msvcp140.dll
+0x00007ff9ba4e0000 - 0x00007ff9bb227000 	C:\Users\Hojun\.jdks\openjdk-22.0.1\bin\server\jvm.dll
+0x00007ffa717c0000 - 0x00007ffa71871000 	C:\Windows\System32\ADVAPI32.dll
+0x00007ffa72850000 - 0x00007ffa728ef000 	C:\Windows\System32\sechost.dll
+0x00007ffa71280000 - 0x00007ffa713a0000 	C:\Windows\System32\RPCRT4.dll
+0x00007ffa70940000 - 0x00007ffa70967000 	C:\Windows\System32\bcrypt.dll
+0x00007ffa71600000 - 0x00007ffa7166b000 	C:\Windows\System32\WS2_32.dll
+0x00007ffa6fe50000 - 0x00007ffa6fe9b000 	C:\Windows\SYSTEM32\POWRPROF.dll
+0x00007ffa6b560000 - 0x00007ffa6b56a000 	C:\Windows\SYSTEM32\VERSION.dll
+0x00007ffa671a0000 - 0x00007ffa671c7000 	C:\Windows\SYSTEM32\WINMM.dll
+0x00007ffa6fcc0000 - 0x00007ffa6fcd2000 	C:\Windows\SYSTEM32\UMPDC.dll
+0x00007ffa6e670000 - 0x00007ffa6e682000 	C:\Windows\SYSTEM32\kernel.appcore.dll
+0x00007ffa46230000 - 0x00007ffa4623a000 	C:\Users\Hojun\.jdks\openjdk-22.0.1\bin\jimage.dll
+0x00007ffa69290000 - 0x00007ffa69491000 	C:\Windows\SYSTEM32\DBGHELP.DLL
+0x00007ffa696f0000 - 0x00007ffa69724000 	C:\Windows\SYSTEM32\dbgcore.DLL
+0x00007ffa70e50000 - 0x00007ffa70ed2000 	C:\Windows\System32\bcryptPrimitives.dll
+0x00007ff9fa510000 - 0x00007ff9fa54c000 	C:\Users\Hojun\.jdks\openjdk-22.0.1\bin\jdwp.dll
+0x00007ff9b9d40000 - 0x00007ff9b9f4e000 	C:\Users\Hojun\AppData\Local\Temp\idea_libasyncProfiler_dll_temp_folder15064\libasyncProfiler.dll
+0x00007ffa41150000 - 0x00007ffa4115f000 	C:\Users\Hojun\.jdks\openjdk-22.0.1\bin\instrument.dll
+0x00007ffa3d640000 - 0x00007ffa3d65e000 	C:\Users\Hojun\.jdks\openjdk-22.0.1\bin\java.dll
+0x00007ffa71980000 - 0x00007ffa720f0000 	C:\Windows\System32\SHELL32.dll
+0x00007ffa72210000 - 0x00007ffa7233b000 	C:\Windows\System32\ole32.dll
+0x00007ffa728f0000 - 0x00007ffa72c43000 	C:\Windows\System32\combase.dll
+0x00007ffa3d620000 - 0x00007ffa3d637000 	C:\Users\Hojun\.jdks\openjdk-22.0.1\bin\zip.dll
+
+dbghelp: loaded successfully - version: 4.0.5 - missing functions: none
+symbol engine: initialized successfully - sym options: 0x614 - pdb path: .;C:\Users\Hojun\.jdks\openjdk-22.0.1\bin;C:\Windows\SYSTEM32;C:\Windows\WinSxS\amd64_microsoft.windows.common-controls_6595b64144ccf1df_6.0.19041.6280_none_60bc30a171f2f3f3;C:\Users\Hojun\.jdks\openjdk-22.0.1\bin\server;C:\Users\Hojun\AppData\Local\Temp\idea_libasyncProfiler_dll_temp_folder15064
+
+VM Arguments:
+jvm_args: -agentlib:jdwp=transport=dt_socket,address=127.0.0.1:59964,suspend=y,server=n -agentpath:C:\Users\Hojun\AppData\Local\Temp\idea_libasyncProfiler_dll_temp_folder15064\libasyncProfiler.dll=version,jfr,event=wall,interval=10ms,cstack=no,file=C:\Users\Hojun\IdeaSnapshots\Application_2025_09_14_105419.jfr,dbghelppath=C:\Users\Hojun\AppData\Local\Temp\idea_dbghelp_dll_temp_folder9\dbghelp.dll,log=C:\Users\Hojun\AppData\Local\Temp\Application_2025_09_14_105419.jfr.log.txt,logLevel=DEBUG -XX:TieredStopAtLevel=1 -Dspring.output.ansi.enabled=always -Dcom.sun.management.jmxremote -Dspring.jmx.enabled=true -Dspring.liveBeansView.mbeanDomain -Dspring.application.admin.enabled=true -Dmanagement.endpoints.jmx.exposure.include=* -javaagent:C:\Users\Hojun\AppData\Local\JetBrains\IntelliJIdea2024.3\captureAgent\debugger-agent.jar=file:/C:/Users/Hojun/AppData/Local/Temp/capture1.props -Dkotlinx.coroutines.debug.enable.creation.stack.trace=false -Ddebugger.agent.enable.coroutines=true -Dkotlinx.coroutines.debug.enable.flows.stack.trace=true -Dkotlinx.coroutines.debug.enable.mutable.state.flows.stack.trace=true -Dfile.encoding=UTF-8 -Dsun.stdout.encoding=UTF-8 -Dsun.stderr.encoding=UTF-8 
+java_command: com.demo.ApplicationKt
+java_class_path (initial): C:\Users\Hojun\Documents\GitHub\BaseBallStatCrawler\build\classes\kotlin\main;C:\Users\Hojun\Documents\GitHub\BaseBallStatCrawler\build\resources\main;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-reflect\1.9.24\767f8e3d382a98e2d5a465abe36be2b7019a7be4\kotlin-reflect-1.9.24.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.jetbrains.kotlin\kotlin-stdlib\1.9.24\9928532f12c66ad816a625b3f9984f8368ca6d2b\kotlin-stdlib-1.9.24.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-web\3.3.2\720418538668a8742d0ae24097811d5250cf5c32\spring-boot-starter-web-3.3.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-data-jpa\3.3.2\2731d74dfc18fb905c29930cf55493980c2cee5a\spring-boot-starter-data-jpa-3.3.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-jdbc\3.3.2\544775d745288972598ab2e872e5a4816b6d9b39\spring-boot-starter-jdbc-3.3.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.postgresql\postgresql\42.7.3\24f3e9f7231428cd20eb4dde00dd3fce44e05464\postgresql-42.7.3.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.jsoup\jsoup\1.17.2\1e75b08d7019546a954f1e359477f916f537a34d\jsoup-1.17.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-java\4.21.0\2cc38c8dbef9d6e8774f05c2d2e8088180858ed4\selenium-java-4.21.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\io.github.bonigarcia\webdrivermanager\5.9.2\61d2d9413ab230f401d2e9aac3bca0baf02b143c\webdrivermanager-5.9.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springdoc\springdoc-openapi-starter-webmvc-ui\2.5.0\e81e60e9be9fd65503071337e634b6056127a2fb\springdoc-openapi-starter-webmvc-ui-2.5.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.jetbrains\annotations\13.0\919f0dfe192fb4e063e7dacadee7f8bb9a2672a9\annotations-13.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-json\3.3.2\d8b8b73e7820092b4e41d730eeb968add7957c45\spring-boot-starter-json-3.3.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter\3.3.2\f9377a223dab5c4afe7aead05bf6ac567cf565ab\spring-boot-starter-3.3.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-tomcat\3.3.2\37ccb53cd5207fffd7a6fc1b591687f8cb1350df\spring-boot-starter-tomcat-3.3.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework\spring-webmvc\6.1.11\9ec4c2a5e28bf7b2d60e254e976940b12c8ba32a\spring-webmvc-6.1.11.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework\spring-web\6.1.11\8910d08f15492273543d2c8032b2b895e08ed9e\spring-web-6.1.11.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-aop\3.3.2\26d996e253768d3121bb3ffbef28cefc07fdbddb\spring-boot-starter-aop-3.3.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.hibernate.orm\hibernate-core\6.5.2.Final\e9e0cc47f6cd2b2553968aee66bd9e55e7485221\hibernate-core-6.5.2.Final.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework.data\spring-data-jpa\3.3.2\cfa9cd077f3f15d0657bbb6d7c8e1c7c7da7e6e2\spring-data-jpa-3.3.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework\spring-aspects\6.1.11\141d92094a460f338aa0999023ca7a25861d49a1\spring-aspects-6.1.11.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.zaxxer\HikariCP\5.1.0\8c96e36c14461fc436bb02b264b96ef3ca5dca8c\HikariCP-5.1.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework\spring-jdbc\6.1.11\92b9f712206993c56c56903547c6b695a4a70128\spring-jdbc-6.1.11.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-chrome-driver\4.19.1\514183dac94c637664a6930b3524e9acfdda3333\selenium-chrome-driver-4.19.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-devtools-v123\4.19.1\640316a429f958e7965ed6e8105696171de3eba7\selenium-devtools-v123-4.19.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-devtools-v124\4.21.0\b29f46d95d8ddec0bf97343a0124dd47e3cbf14\selenium-devtools-v124-4.21.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-devtools-v125\4.21.0\e4972154992319d39384bb85e69264ee6312cec0\selenium-devtools-v125-4.21.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-firefox-driver\4.19.1\25dd354676b8d3fdd40f36a6a689f0d40e848ad\selenium-firefox-driver-4.19.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-devtools-v85\4.19.1\d0a67f642e3bed25aa15d7a0f86e29a1d2f45079\selenium-devtools-v85-4.19.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-edge-driver\4.19.1\4eb8d3bb8c2c2ad0cc683d5eff5762f9b64b8c0f\selenium-edge-driver-4.19.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-ie-driver\4.19.1\6cf7b3e46dee0afd683d6406e974d96c3f0502cc\selenium-ie-driver-4.19.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-safari-driver\4.19.1\f8dc417b6431d351455d7e4bc47708527f6617a8\selenium-safari-driver-4.19.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-support\4.19.1\996e3758c85d590492564d040546690522117f1b\selenium-support-4.19.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-remote-driver\4.19.1\b4b4509c876e71727c4204657a4d94859f595a28\selenium-remote-driver-4.19.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-api\4.19.1\21d2e581f2809152a7aca79c8a15ebdc0ffcc6e3\selenium-api-4.19.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.github.docker-java\docker-java-transport-httpclient5\3.4.0\1de4515029dee34e0bf04eb2db2073107862c173\docker-java-transport-httpclient5-3.4.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents.client5\httpclient5\5.3.1\56b53c8f4bcdaada801d311cf2ff8a24d6d96883\httpclient5-5.3.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.github.docker-java\docker-java\3.4.0\74afcd1d3ca458e8adfc9fa910cd8467187230d5\docker-java-3.4.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.slf4j\slf4j-api\2.0.13\80229737f704b121a318bba5d5deacbcf395bc77\slf4j-api-2.0.13.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.google.code.gson\gson\2.10.1\b3add478d4382b78ea20b1671390a858002feb6c\gson-2.10.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.brotli\dec\0.1.2\c26a897ae0d524809eef1c786cc6183b4ddcc3b\dec-0.1.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-compress\1.26.2\eb1f823447af685208e684fce84783b43517960c\commons-compress-1.26.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-lang3\3.14.0\1ed471194b02f2c6cb734a0cd6f6f107c673afae\commons-lang3-3.14.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springdoc\springdoc-openapi-starter-webmvc-api\2.5.0\a450d666f17b10adff53703b16bc77954a045fd2\springdoc-openapi-starter-webmvc-api-2.5.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.webjars\swagger-ui\5.13.0\262a148333ae8c7fd0e23606855ec516e473efd\swagger-ui-5.13.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.datatype\jackson-datatype-jdk8\2.17.2\efd3dd0e1d0db8bc72abbe71c15e697bb83b4b45\jackson-datatype-jdk8-2.17.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.datatype\jackson-datatype-jsr310\2.17.2\267b85e9ba2892a37be6d80aa9ca1438a0d8c210\jackson-datatype-jsr310-2.17.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.module\jackson-module-parameter-names\2.17.2\d27b9f95ccce98984c1ba58d61c5a9c072b1ad95\jackson-module-parameter-names-2.17.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-databind\2.17.2\e6deb029e5901e027c129341fac39e515066b68c\jackson-databind-2.17.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-starter-logging\3.3.2\b685c97f3c24dc30c53ae18151a798f701f2a640\spring-boot-starter-logging-3.3.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot-autoconfigure\3.3.2\6a9ab910b00f0b504a5903e3680ac10018da6247\spring-boot-autoconfigure-3.3.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework.boot\spring-boot\3.3.2\72a257d5518b2b8b9949a26543cdb3a4e67de5f8\spring-boot-3.3.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\jakarta.annotation\jakarta.annotation-api\2.1.1\48b9bda22b091b1f48b13af03fe36db3be6e1ae3\jakarta.annotation-api-2.1.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework\spring-core\6.1.11\90fce4311852c68c1e87c65adf60db9add1a6dcb\spring-core-6.1.11.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.yaml\snakeyaml\2.2\3af797a25458550a16bf89acc8e4ab2b7f2bfce0\snakeyaml-2.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.apache.tomcat.embed\tomcat-embed-websocket\10.1.26\3b147d7e5566e9361e86422f9e49fdd56a429637\tomcat-embed-websocket-10.1.26.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.apache.tomcat.embed\tomcat-embed-core\10.1.26\5e0fa06ca373ef0ca55e603291ea51b590c377ea\tomcat-embed-core-10.1.26.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.apache.tomcat.embed\tomcat-embed-el\10.1.26\5a5cbcb3e51fcd557b164736e9920a3dd2ac1e33\tomcat-embed-el-10.1.26.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework\spring-context\6.1.11\8fc69f776333713aa26be8821af8c6355ccad8d8\spring-context-6.1.11.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework\spring-aop\6.1.11\3503ef99b759b81f8b0b3d5260bf4842e393a581\spring-aop-6.1.11.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework\spring-beans\6.1.11\266176d132ab2bbf8e69e4aa6d7f47ec746ddc9a\spring-beans-6.1.11.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework\spring-expression\6.1.11\7c12cf1cd39289cfab7c5933eda9e4704a7f2799\spring-expression-6.1.11.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\io.micrometer\micrometer-observation\1.13.2\a498ee0871596f41a61679a29bc8390defba4245\micrometer-observation-1.13.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.aspectj\aspectjweaver\1.9.22.1\bca243d0af0db4758fbae45c5f4995cb5dabb612\aspectjweaver-1.9.22.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\jakarta.persistence\jakarta.persistence-api\3.1.0\66901fa1c373c6aff65c13791cc11da72060a8d6\jakarta.persistence-api-3.1.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\jakarta.transaction\jakarta.transaction-api\2.0.1\51a520e3fae406abb84e2e1148e6746ce3f80a1a\jakarta.transaction-api-2.0.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework\spring-orm\6.1.11\b96b83839b970f3a5d2ad2f86845924654a17886\spring-orm-6.1.11.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework.data\spring-data-commons\3.3.2\5f08fd077c957fd561bef09b08ef6cdf54e1c826\spring-data-commons-3.3.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework\spring-tx\6.1.11\2e38b3218ae80d0b5401a4ef299c4cfbc3a73ed7\spring-tx-6.1.11.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.antlr\antlr4-runtime\4.13.0\5a02e48521624faaf5ff4d99afc88b01686af655\antlr4-runtime-4.13.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-chromium-driver\4.19.1\2a5a34c7a05a0c0a927cfef564ab398cb0604179\selenium-chromium-driver-4.19.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-manager\4.19.1\8e84df7bcd413146606c1b402bf7802cdb01b547\selenium-manager-4.19.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-json\4.19.1\1fda7186bc73c1b50cece7107ad5d9ec230d89c4\selenium-json-4.19.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.google.auto.service\auto-service-annotations\1.1.1\da12a15cd058ba90a0ff55357fb521161af4736d\auto-service-annotations-1.1.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-http\4.19.1\8b9e38017ebdc216e3da9adcfe57fa88d779e115\selenium-http-4.19.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.google.guava\guava\33.1.0-jre\9b7ed39143d59e8eabcc6f91ffe4d23db2efe558\guava-33.1.0-jre.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\net.bytebuddy\byte-buddy\1.14.18\81e9b9a20944626e6757b5950676af901c2485\byte-buddy-1.14.18.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.seleniumhq.selenium\selenium-os\4.19.1\785fcb223ba3ddbbd01144dc03c5da47eb458e2a\selenium-os-4.19.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\io.opentelemetry.semconv\opentelemetry-semconv\1.23.1-alpha\218e361772670212a46be5940010222d68e66f2a\opentelemetry-semconv-1.23.1-alpha.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-exporter-logging\1.37.0\591eb50a1d712098ec8cdf1effc2596b39147009\opentelemetry-exporter-logging-1.37.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-sdk-extension-autoconfigure\1.37.0\4d363d2fb460c8832c46b01159031370a8d8e709\opentelemetry-sdk-extension-autoconfigure-1.37.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-sdk-extension-autoconfigure-spi\1.37.0\bb9097589c4e4569e77e634477baabc76a755bc4\opentelemetry-sdk-extension-autoconfigure-spi-1.37.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-sdk\1.37.0\e71abf2eaa1b7f91b9689d86d919b7d1c00faa3c\opentelemetry-sdk-1.37.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-sdk-trace\1.37.0\9875634a47d8e1e150df963ceba8a707547ab00a\opentelemetry-sdk-trace-1.37.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-sdk-common\1.37.0\7e1421111afbffca43f6aa65d2a60a606bc1da5b\opentelemetry-sdk-common-1.37.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-api\1.37.0\9b4bdeb434885fdf417967ddea37afe4d21fab4e\opentelemetry-api-1.37.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-context\1.37.0\f180a3855a9dd8c1cf4fddabcfbd4d0a55c4996b\opentelemetry-context-1.37.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.github.docker-java\docker-java-transport\3.4.0\c058705684d782effc4b2edfdef1a87544ba4af8\docker-java-transport-3.4.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\net.java.dev.jna\jna\5.13.0\1200e7ebeedbe0d10062093f32925a912020e747\jna-5.13.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents.core5\httpcore5-h2\5.2.5\9425df4d1365cee86a8e031a036bdca4343da4b\httpcore5-h2-5.2.5.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.apache.httpcomponents.core5\httpcore5\5.2.5\dab1e18842971a45ca8942491ce005ab86a028d7\httpcore5-5.2.5.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.github.docker-java\docker-java-core\3.4.0\520ce1892e4f9a38ed51fedfc8682ea073af1df\docker-java-core-3.4.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.slf4j\jcl-over-slf4j\2.0.13\d062d6e35605aabee0c727a950e29d39ac0a262e\jcl-over-slf4j-2.0.13.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\commons-codec\commons-codec\1.16.1\47bd4d333fba53406f6c6c51884ddbca435c8862\commons-codec-1.16.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\commons-io\commons-io\2.16.1\377d592e740dc77124e0901291dbfaa6810a200e\commons-io-2.16.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springdoc\springdoc-openapi-starter-common\2.5.0\d83078092cc4e61ef502018c7560d466210cc14e\springdoc-openapi-starter-common-2.5.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-core\2.17.2\969a35cb35c86512acbadcdbbbfb044c877db814\jackson-core-2.17.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.core\jackson-annotations\2.17.2\147b7b9412ffff24339f8aba080b292448e08698\jackson-annotations-2.17.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\ch.qos.logback\logback-classic\1.5.6\afc75d260d838a3bddfb8f207c2805ed7d1b34f9\logback-classic-1.5.6.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.apache.logging.log4j\log4j-to-slf4j\2.23.1\425ad1eb8a39904d2830e907a324e956fb456520\log4j-to-slf4j-2.23.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.slf4j\jul-to-slf4j\2.0.13\a3bcd9d9dd50c71ce69f06b1fd05e40fdeff6ba5\jul-to-slf4j-2.0.13.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.springframework\spring-jcl\6.1.11\97b34c6b72c8084759e71cd09a7dad16bfb8f1da\spring-jcl-6.1.11.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\io.micrometer\micrometer-commons\1.13.2\b2b69f7887f9bf6f5ae42e86a67a62367056aa3c\micrometer-commons-1.13.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\dev.failsafe\failsafe\3.3.2\738a986f1f0e4b6c6a49d351dddc772d1378c5a8\failsafe-3.3.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.google.guava\failureaccess\1.0.2\c4a06a64e650562f30b7bf9aaec1bfed43aca12b\failureaccess-1.0.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.google.guava\listenablefuture\9999.0-empty-to-avoid-conflict-with-guava\b421526c5f297295adef1c886e5246c39d4ac629\listenablefuture-9999.0-empty-to-avoid-conflict-with-guava.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.google.code.findbugs\jsr305\3.0.2\25ea2e8b0c338a877313bd4672d3fe056ea78f0d\jsr305-3.0.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.checkerframework\checker-qual\3.42.0\638ec33f363a94d41a4f03c3e7d3dcfba64e402d\checker-qual-3.42.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.google.errorprone\error_prone_annotations\2.26.1\c1fde57694bdc14e8618899aaa6e857d9465d7de\error_prone_annotations-2.26.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.google.j2objc\j2objc-annotations\3.0.0\7399e65dd7e9ff3404f4535b2f017093bdb134c7\j2objc-annotations-3.0.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.apache.commons\commons-exec\1.3\8dfb9facd0830a27b1b5f29f84593f0aeee7773b\commons-exec-1.3.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-sdk-metrics\1.37.0\49eb5a745be2bce3663a1a4f2ebc963e8a78620\opentelemetry-sdk-metrics-1.37.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-sdk-logs\1.37.0\d1b3fe627a0343c35a1b803f68ad596a1b231a25\opentelemetry-sdk-logs-1.37.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.github.docker-java\docker-java-api\3.4.0\9ef23dcc93693f15e69b64632be096c38e31bc44\docker-java-api-3.4.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\io.swagger.core.v3\swagger-core-jakarta\2.2.21\b7d961d3431bb200af600c5bb6b68024c2f6282c\swagger-core-jakarta-2.2.21.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\ch.qos.logback\logback-core\1.5.6\41cbe874701200c5624c19e0ab50d1b88dfcc77d\logback-core-1.5.6.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.apache.logging.log4j\log4j-api\2.23.1\9c15c29c526d9c6783049c0a77722693c66706e1\log4j-api-2.23.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\io.swagger.core.v3\swagger-models-jakarta\2.2.21\3f6ed502304a3a2cc4ae847dbdc956ba010e8261\swagger-models-jakarta-2.2.21.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.fasterxml.jackson.dataformat\jackson-dataformat-yaml\2.17.2\78d2c73dbec62044d7cf3b544b2e0d24a1a093b0\jackson-dataformat-yaml-2.17.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\io.swagger.core.v3\swagger-annotations-jakarta\2.2.21\3fa24dc3ad843c44602df97832f2d38e7bad1465\swagger-annotations-jakarta-2.2.21.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\jakarta.xml.bind\jakarta.xml.bind-api\4.0.2\6cd5a999b834b63238005b7144136379dc36cad2\jakarta.xml.bind-api-4.0.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\jakarta.validation\jakarta.validation-api\3.0.2\92b6631659ba35ca09e44874d3eb936edfeee532\jakarta.validation-api-3.0.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\jakarta.activation\jakarta.activation-api\2.1.3\fa165bd70cda600368eee31555222776a46b881f\jakarta.activation-api-2.1.3.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.jboss.logging\jboss-logging\3.5.3.Final\c88fc1d8a96d4c3491f55d4317458ccad53ca663\jboss-logging-3.5.3.Final.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.hibernate.common\hibernate-commons-annotations\6.0.6.Final\77a5f94b56d49508e0ee334751db5b78e5ccd50c\hibernate-commons-annotations-6.0.6.Final.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\io.smallrye\jandex\3.1.2\a6c1c89925c7df06242b03dddb353116ceb9584c\jandex-3.1.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.fasterxml\classmate\1.7.0\e98374da1f2143ac8e6e0a95036994bb19137a3\classmate-1.7.0.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.glassfish.jaxb\jaxb-runtime\4.0.5\ca84c2a7169b5293e232b9d00d1e4e36d4c3914a\jaxb-runtime-4.0.5.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\jakarta.inject\jakarta.inject-api\2.0.1\4c28afe1991a941d7702fe1362c365f0a8641d1e\jakarta.inject-api-2.0.1.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.glassfish.jaxb\jaxb-core\4.0.5\7b4b11ea5542eea4ad55e1080b23be436795b3\jaxb-core-4.0.5.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\io.opentelemetry\opentelemetry-api-incubator\1.37.0-alpha\2f0c0db3eaf152ee0478352847cb768a18191084\opentelemetry-api-incubator-1.37.0-alpha.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.eclipse.angus\angus-activation\2.0.2\41f1e0ddd157c856926ed149ab837d110955a9fc\angus-activation-2.0.2.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\org.glassfish.jaxb\txw2\4.0.5\f36a4ef12120a9bb06d766d6a0e54b144fd7ed98\txw2-4.0.5.jar;C:\Users\Hojun\.gradle\caches\modules-2\files-2.1\com.sun.istack\istack-commons-runtime\4.1.2\18ec117c85f3ba0ac65409136afa8e42bc74e739\istack-commons-runtime-4.1.2.jar;C:\Program Files\JetBrains\IntelliJ IDEA 2024.3\lib\idea_rt.jar
+Launcher Type: SUN_STANDARD
+
+[Global flags]
+     intx CICompilerCount                          = 4                                         {product} {ergonomic}
+     uint ConcGCThreads                            = 3                                         {product} {ergonomic}
+     uint G1ConcRefinementThreads                  = 10                                        {product} {ergonomic}
+   size_t G1HeapRegionSize                         = 2097152                                   {product} {ergonomic}
+   size_t InitialHeapSize                          = 268435456                                 {product} {ergonomic}
+     bool ManagementServer                         = true                                      {product} {command line}
+   size_t MarkStackSize                            = 4194304                                   {product} {ergonomic}
+   size_t MaxHeapSize                              = 4265607168                                {product} {ergonomic}
+   size_t MinHeapDeltaBytes                        = 2097152                                   {product} {ergonomic}
+   size_t MinHeapSize                              = 8388608                                   {product} {ergonomic}
+    uintx NonNMethodCodeHeapSize                   = 4096                                   {pd product} {ergonomic}
+    uintx NonProfiledCodeHeapSize                  = 0                                      {pd product} {ergonomic}
+     bool ProfileInterpreter                       = false                                  {pd product} {command line}
+    uintx ProfiledCodeHeapSize                     = 0                                      {pd product} {ergonomic}
+   size_t SoftMaxHeapSize                          = 4265607168                             {manageable} {ergonomic}
+     intx TieredStopAtLevel                        = 1                                         {product} {command line}
+     bool UseCompressedOops                        = true                           {product lp64_product} {ergonomic}
+     bool UseG1GC                                  = true                                      {product} {ergonomic}
+     bool UseLargePagesIndividualAllocation        = false                                  {pd product} {ergonomic}
+
+Logging:
+Log output configuration:
+ #0: stdout all=warning uptime,level,tags foldmultilines=false
+ #1: stderr all=off uptime,level,tags foldmultilines=false
+
+Environment Variables:
+JAVA_HOME=C:\Program Files\Java\jdk-21
+PATH=C:\app\hojun\product\21c\dbhomeXE\bin;C:\Program Files\MySQL\MySQL Server 8.0;C:\Program Files\dotnet\;C:\Program Files\NVIDIA Corporation\NVIDIA NvDLISR;C:\Program Files\Git\cmd;C:\Program Files (x86)\Microsoft SQL Server\160\Tools\Binn\;C:\Program Files\Microsoft SQL Server\160\Tools\Binn\;C:\Program Files\Microsoft SQL Server\Client SDK\ODBC\170\Tools\Binn\;C:\Program Files\Microsoft SQL Server\160\DTS\Binn\;C:\Program Files (x86)\Microsoft SQL Server\160\DTS\Binn\;C:\tools\chromedriver\;;C:\Program Files\Docker\Docker\resources\bin;C:\Ruby31-x64\bin;C:\Ruby34-x64\bin;C:\Program Files\PostgreSQL\13\bin;C:\Users\Hojun\.dotnet\tools;C:\Program Files\JetBrains\IntelliJ IDEA 2024.1.4\bin;;C:\Users\Hojun\AppData\Local\SOOP;C:\tools\chromedriver\;C:\Program Files\Java\jdk-21\bin;C:\Users\Hojun\AppData\Local\Programs\cursor\resources\app\bin
+USERNAME=hojun
+OS=Windows_NT
+PROCESSOR_IDENTIFIER=AMD64 Family 25 Model 33 Stepping 0, AuthenticAMD
+TMP=C:\Users\Hojun\AppData\Local\Temp
+TEMP=C:\Users\Hojun\AppData\Local\Temp
+
+
+
+
+Periodic native trim disabled
+
+---------------  S Y S T E M  ---------------
+
+OS:
+ Windows 10 , 64 bit Build 19041 (10.0.19041.5915)
+OS uptime: 0 days 10:00 hours
+Hyper-V role detected
+
+CPU: total 12 (initial active 12) (12 cores per cpu, 2 threads per core) family 25 model 33 stepping 0 microcode 0x0, cx8, cmov, fxsr, ht, mmx, 3dnowpref, sse, sse2, sse3, ssse3, sse4a, sse4.1, sse4.2, popcnt, lzcnt, tsc, tscinvbit, avx, avx2, aes, erms, clmul, bmi1, bmi2, adx, sha, fma, vzeroupper, clflush, clflushopt, hv, rdtscp, rdpid, fsrm, f16c, cet_ss
+Processor Information for all 12 processors :
+  Max Mhz: 3701, Current Mhz: 3701, Mhz Limit: 3701
+
+Memory: 4k page, system-wide physical 16265M (374M free)
+TotalPageFile size 65417M (AvailPageFile size 9M)
+current process WorkingSet (physical memory assigned to process): 13M, peak: 13M
+current process commit charge ("private bytes"): 70M, peak: 71M
+
+vm_info: OpenJDK 64-Bit Server VM (22.0.1+8-16) for windows-amd64 JRE (22.0.1+8-16), built on 2024-03-12T10:33:16Z by "mach5one" with MS VC++ 17.6 (VS2022)
+
+END.

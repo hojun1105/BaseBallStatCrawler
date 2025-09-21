@@ -1,6 +1,5 @@
-package com.demo.repository
+package com.demo.com.demo.repository
 
-import com.demo.model.HitterStat
 import com.demo.model.PitcherStat
 import org.springframework.data.jpa.repository.JpaRepository
 

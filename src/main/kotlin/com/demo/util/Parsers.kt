@@ -1,4 +1,4 @@
-package com.demo.util
+package com.demo.com.demo.util
 
 import java.math.BigDecimal
 import java.time.LocalDate

@@ -1,4 +1,4 @@
-package com.demo.service
+package com.demo.com.demo.service
 
 import org.openqa.selenium.By
 import org.openqa.selenium.WebDriver
@@ -9,11 +9,15 @@ import org.springframework.stereotype.Service
 @Service
 class CrawlPlayerInfoService {
 
-    fun invoke(url:String): List<String> {
-        val driver = createDriver()
+    fun invoke(url:String, driver:WebDriver): List<String>? {
         driver.get(url)
+
         val teamName = driver.findElement(By.id("h4Team")).text.trim()
-        val teamId = teamNameToId[teamName] ?: throw IllegalArgumentException("알 수 없는 팀 이름: $teamName")
+        val teamId = teamNameToId[teamName]
+        if (teamId == null) {
+            println("⚠️ 알 수 없는 팀 이름: $teamName → 스킵합니다.")
+            return null
+        }
         val result = mutableListOf<String>()
         val spanIds = listOf(
             "cphContents_cphContents_cphContents_playerProfile_lblName",
@@ -33,7 +37,6 @@ class CrawlPlayerInfoService {
             }
         }
         result.add(teamId)
-        driver.quit()
         return result
     }
 
@@ -47,12 +50,12 @@ class CrawlPlayerInfoService {
         "LG 트윈스" to "1",
         "두산 베어스" to "2",
         "SSG 랜더스" to "3",
-        "NC 다이노스" to "4",
-        "KT 위즈" to "5",
-        "KIA 타이거즈" to "6",
+        "키움 히어로즈" to "4",
+        "롯데 자이언츠" to "5",
+        "한화 이글스" to "6",
         "삼성 라이온즈" to "7",
-        "롯데 자이언츠" to "8",
-        "한화 이글스" to "9",
-        "키움 히어로즈" to "10"
+        "KIA 타이거즈" to "8",
+        "NC 다이노스" to "9",
+        "KT 위즈" to "10"
     )
 }

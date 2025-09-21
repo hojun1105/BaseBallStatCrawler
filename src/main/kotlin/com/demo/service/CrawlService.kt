@@ -1,17 +1,15 @@
-package com.demo.service
+package com.demo.com.demo.service
 
-import com.demo.dto.PitcherStat
+import com.demo.model.PitcherStat
 import org.openqa.selenium.By
 import org.openqa.selenium.JavascriptExecutor
 import org.openqa.selenium.WebDriver
 import org.openqa.selenium.chrome.ChromeDriver
 import org.openqa.selenium.chrome.ChromeOptions
 import org.openqa.selenium.support.ui.ExpectedConditions
-import org.openqa.selenium.support.ui.Select
 import org.openqa.selenium.support.ui.WebDriverWait
 import org.springframework.stereotype.Service
 import java.time.Duration
-import java.time.LocalDate
 
 @Service
 class CrawlService {

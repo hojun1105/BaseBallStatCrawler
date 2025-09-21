@@ -1,4 +1,4 @@
-package com.demo.repository
+package com.demo.com.demo.repository
 
 import com.demo.model.TeamInfo
 import org.springframework.data.jpa.repository.JpaRepository
