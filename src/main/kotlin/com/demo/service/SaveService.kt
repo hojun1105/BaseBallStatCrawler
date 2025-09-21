@@ -1,7 +1,6 @@
-package com.demo.service
+package com.demo.com.demo.service
 
-import com.demo.dto.HitterStat
-import com.demo.dto.PitcherStat
+import com.demo.model.PitcherStat
 import org.springframework.stereotype.Service
 import javax.sql.DataSource
 

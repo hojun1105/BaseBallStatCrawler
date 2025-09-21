@@ -1,6 +1,6 @@
 package com.demo
 
-import com.demo.service.CrawlPitcherStatService
+import com.demo.com.demo.service.CrawlPitcherStatService
 import org.jsoup.Jsoup
 import java.io.File
 import java.io.FileWriter

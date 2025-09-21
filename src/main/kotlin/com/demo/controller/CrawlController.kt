@@ -1,8 +1,9 @@
-package com.demo.controller
+package com.demo.com.demo.controller
 
-import com.demo.service.*
+import com.demo.com.demo.service.CrawlHitterStatService
+import com.demo.com.demo.service.SaveHitterStatService
+import com.demo.com.demo.service.SavePitcherStatService
 import io.swagger.v3.oas.annotations.Operation
-import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RequestParam
@@ -12,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController
 @RequestMapping("/crawl")
 class CrawlController(
     private val crawlHitterStatService: CrawlHitterStatService,
-    private val crawlPitcherStatService: CrawlPitcherStatService,
+    private val crawlPitcherStatService: com.demo.com.demo.service.CrawlPitcherStatService,
     private val saveHitterStatService: SaveHitterStatService,
     private val savePitcherStatService: SavePitcherStatService,
 ) {
