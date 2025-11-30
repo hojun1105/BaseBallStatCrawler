@@ -25,7 +25,7 @@ class CrawlPitcherStatService(
         return urls
             .mapNotNull { url ->
             val stat = crawlStats(url,driver)
-            val info = crawlPlayerInfoService.invoke(url,driver)
+            val info = crawlPlayerInfoService.invoke(driver, url)
                 if(info!=null){
                     info to stat
                 }else {

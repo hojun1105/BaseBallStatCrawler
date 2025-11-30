@@ -1,0 +1,14 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:15
+    container_name: postgres-kbo
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: 1234
+      POSTGRES_DB: kbohub
+    ports:
+      - "5433:5432"
+    volumes:
+      - ./src/main/resources/schema.sql:/docker-entrypoint-initdb.d/schema.sql:ro
