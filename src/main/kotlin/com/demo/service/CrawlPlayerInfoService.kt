@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service
 @Service
 class CrawlPlayerInfoService {
 
-    fun invoke(url:String, driver:WebDriver): List<String>? {
+    fun invoke(driver: WebDriver, url: String): List<String>? {
         driver.get(url)
 
         val teamName = driver.findElement(By.id("h4Team")).text.trim()
@@ -18,6 +18,7 @@ class CrawlPlayerInfoService {
             println("⚠️ 알 수 없는 팀 이름: $teamName → 스킵합니다.")
             return null
         }
+
         val result = mutableListOf<String>()
         val spanIds = listOf(
             "cphContents_cphContents_cphContents_playerProfile_lblName",

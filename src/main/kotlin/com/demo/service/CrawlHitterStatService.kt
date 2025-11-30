@@ -24,10 +24,10 @@ class CrawlHitterStatService(
         val driver = createDriver()
         try {
             val urls = crawlByTeam(teamCode,driver)
-            return urls.map{ url ->
+            return urls.mapNotNull{ url ->
                 val stat = crawlStats(url,driver)
                 val info = crawlPlayerInfoService.invoke(driver,url)
-                Pair(info,stat)}
+                info?.let{Pair(info,stat)} }
         } finally {
             driver.quit()
         }
