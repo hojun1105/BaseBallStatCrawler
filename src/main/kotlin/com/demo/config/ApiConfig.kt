@@ -1,10 +1,9 @@
 package com.demo.config
 
 import org.springframework.boot.context.properties.ConfigurationProperties
+import org.springframework.stereotype.Component
 
-/**
- * 네이버 클라우드 플랫폼 API 인증 설정
- */
+@Component
 @ConfigurationProperties(prefix = "naver.api")
 class ApiConfig {
     var clientId: String = ""

@@ -22,7 +22,8 @@ dependencies {
     implementation("io.github.bonigarcia:webdrivermanager:5.9.2")
     implementation("org.jetbrains.kotlin:kotlin-reflect")
     implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.5.0")
-    
+    implementation("io.github.cdimascio:dotenv-kotlin:6.4.1")
+
     // Ktor HTTP Client (Geocoding API 호출용)
     implementation("io.ktor:ktor-client-core:2.3.11")
     implementation("io.ktor:ktor-client-cio:2.3.11")

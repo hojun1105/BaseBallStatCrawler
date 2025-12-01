@@ -99,3 +99,4 @@ ChromeDriver가 설치되어 있어야 합니다:
    - IntelliJ: File → Project Structure → Project → SDK: Java 17 설정 확인
    - Gradle: `jvmToolchain(17)` 설정 확인
 
+

@@ -21,3 +21,7 @@ spring:
     view:
       prefix: /WEB-INF/views/
       suffix: .jsp
+naver:
+  api:
+    client-id: 341cjxx1ew
+    client-secret: EKHsIw5dh5XvZOLvb0yMhKiZFln7yU5ilRJcJ735
